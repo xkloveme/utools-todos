@@ -3,15 +3,22 @@
   "description": "todo",
   "version": "1.0.0",
   "main": "index.html",
-  "preload": "",
+  "preload": "./preload.js",
   "author": "xkloveme",
   "homepage": "https://github.com/xkloveme",
   "logo": "icon.png",
   "features": [
     {
-      "code": "calendar",
-      "explain": "日历",
-      "cmds": ["任务", "todo", "todos"],
+      "code": "add",
+      "explain": "任务",
+      "cmds": ["任务", "todo", "todos",
+        {
+          "type": "text",
+          "label": "文本正则匹配",
+          "match": "/xxx/i",
+          "minLength": 1,
+          "maxLength": 120
+          }],
       "icon": "icon.png"
     }
   ]

@@ -141,6 +141,7 @@ body {
 .completed-wrapper {
   border-bottom: 1px solid #e6e6e6;
   display: -webkit-box;
+  height: 40px;
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;

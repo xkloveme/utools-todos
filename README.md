@@ -2,7 +2,7 @@
 
 ![wjl7kV.png](https://s1.ax1x.com/2020/09/23/wjl7kV.png)
 
-# ⌚一个简单的todo
+# 一个简单的todo
 
 ![image](https://forthebadge.com/images/badges/built-with-love.svg)
 
@@ -14,7 +14,7 @@
 - [项目源码](https://github.com/xkloveme/utools-todos)
 - [反馈](https://github.com/xkloveme/utools-todos/issues)
 
-## 官方用着不方便,写了一个,后续可能会添加utools数据库看心情
+## 官方用着不方便,写了一个自用,后续可能会添加utools数据库看心情
 
 1. 全平台支持. windows, mac, linux.
 
