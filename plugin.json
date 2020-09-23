@@ -1,0 +1,18 @@
+{
+  "pluginName": "todos",
+  "description": "todo",
+  "version": "1.0.0",
+  "main": "index.html",
+  "preload": "",
+  "author": "xkloveme",
+  "homepage": "https://github.com/xkloveme",
+  "logo": "icon.png",
+  "features": [
+    {
+      "code": "calendar",
+      "explain": "日历",
+      "cmds": ["任务", "todo", "todos"],
+      "icon": "icon.png"
+    }
+  ]
+}
