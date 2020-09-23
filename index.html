@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>TodoMVC</title>
-    <script src="./vue.min.js"></script>
     <link rel="stylesheet" media="all" href="./main.css" />
   </head>
   <body>
@@ -86,7 +85,10 @@
     </section>
     <footer class="info">
       Copyright © 冀小康 2020 by
-      <a href="https://github.com/xkloveme/utools-todos" target="_blank" onclick="window.openExternal('https://github.com/xkloveme/utools-todos')"
+      <a
+        href="https://github.com/xkloveme/utools-todos"
+        target="_blank"
+        onclick="window.openExternal('https://github.com/xkloveme/utools-todos')"
         >xkloveme</a
       >
       <iframe
@@ -99,24 +101,30 @@
       >
       </iframe>
     </footer>
-
+    <!-- <script src="https://unpkg.com/vue"></script> -->
+    <script src="./vue.min.js"></script>
     <script>
       // Full spec-compliant TodoMVC with localStorage persistence
       const presetValues = [];
       // Use localStorage
       const STORAGE_KEY = "todo-app";
+      // const _rev = "todo-app";
       const todoStorage = {
         fetch: function () {
+          let db = utools.db.get(STORAGE_KEY);
           var todos =
-            JSON.parse(localStorage.getItem(STORAGE_KEY)) || presetValues;
-          todos.forEach(function (todo, index) {
-            todo.id = index;
-          });
-          todoStorage.uid = todos.length;
+          JSON.parse(db.data) ||
+            JSON.parse(localStorage.getItem(STORAGE_KEY)) ||
+            presetValues;
           return todos;
         },
         save: function (todos) {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+          utools.db.put({
+            _id: STORAGE_KEY,
+            data: JSON.stringify(todos),
+            _rev: utools.db.get(STORAGE_KEY)._rev,
+          });
+          // localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
         },
       };
 
@@ -139,7 +147,7 @@
 
       var app = new Vue({
         data: {
-          todos: todoStorage.fetch(),
+          todos: [],
           newTodo: "",
           editedTodo: null,
           visibility: "all",
@@ -153,6 +161,13 @@
             },
             deep: true,
           },
+        },
+        mounted() {
+          utools.onPluginReady(() => {
+            console.log("插件装配完成，已准备好");
+            let db = utools.db.get("todo-app");
+            this.todos = JSON.parse(db.data); 
+          });
         },
 
         // computed properties
@@ -189,7 +204,7 @@
               return;
             }
             this.todos.push({
-              id: todoStorage.uid++,
+              id: Math.random().toString(36).substr(3),
               title: value,
               completed: false,
             });
